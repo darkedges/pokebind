@@ -1,10 +1,9 @@
 <div class="pokedex">
   <mat-grid-list cols="3" rowHeight="5rem">
     @for (tile of tiles; track tile) {
-    <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows" [style.background-image]="tile.image"
-      [style.background]="tile.color" [style.background-size]="'contain'" [style.background-repeat]="'no-repeat'"
-      [style.background-position]="'center'" [style.background-image]="'url(&quot;' + tile.image + '&quot;)'"
-      class="tile">{{tile.text}}<br>{{tile.number}}<br>
+    <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows" [style.background-color]="tile.color"
+      [style.background-size]="'contain'" [style.background-repeat]="'no-repeat'" [style.background-position]="'center'"
+      [style.background-image]="'url(&quot;' + tile.image + '&quot;)'" class="tile">{{tile.text}}<br>{{tile.number}}<br>
     </mat-grid-tile>
     }
   </mat-grid-list>
