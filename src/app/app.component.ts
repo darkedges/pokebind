@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 export interface Tile {
   color: string;
   cols: number;
@@ -38,12 +37,8 @@ export class AppComponent {
     this.tiles[this.oldValue].color = 'lightblue'
     this.oldValue = (this.value - 1) % 9
     this.tiles[this.oldValue].color = 'lightgreen'
-    PokemonTCG.findCardByID('25')
-      .then((card: any) => {
-        console.log(card)
-      })
-      .catch((error: any) => {
-        console.log(error)
-      });
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   }
 }
