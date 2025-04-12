@@ -5,9 +5,22 @@
     transform: translate(-50%, -50%);
 }
 
-.tile {
-    text-align: center;
+::ng-deep {
+    .mat-grid-tile-content {
+        align-items: start !important;
+        justify-content: flex-start !important;
+    }
 }
+
+.tile {
+    background-size: 50%;
+    background-color: aqua;
+    width: 100%;
+    font-size: large;
+    font-weight: 700;
+    color: black;
+}
+
 
 img {
     width: 100px;
