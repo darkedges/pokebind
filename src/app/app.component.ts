@@ -1068,6 +1068,8 @@ export class AppComponent {
   length = 1025;
   pageSize = 9;
   pageIndex = 0;
+  binderSide = "Front"
+  binderPage = 1
   value: number = 1;
   oldValue: number = 0;
   pageEvent: PageEvent | undefined;
@@ -1105,6 +1107,13 @@ export class AppComponent {
       document.activeElement.blur();
     }
     this.pageIndex = Math.min(this.value / 9) - 1
+    let a = Math.floor((Math.min(this.value / 9) + 1) / 2)
+    if ((Math.min(this.value / 9)) % 2 == 1) {
+      this.binderSide = "Front"
+    } else {
+      this.binderSide = "Back"
+    }
+    this.binderPage = a
   }
 }
 function calcImageURL(p: number): string {

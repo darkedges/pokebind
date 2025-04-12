@@ -11,8 +11,16 @@
     [hidePageSize]="true" [pageIndex]="pageIndex" (page)="handlePageEvent($event)" aria-label="Select page">
   </mat-paginator>
   <div class="overlay">
-    <mat-form-field class="example-form-field">
-      <mat-label>national pokedex number</mat-label>
+    <mat-form-field class="example-form-field" [style.width.px]=50>
+      <mat-label>Page</mat-label>
+      <input matInput placeholder="Page" [value]="binderPage" readonly />
+    </mat-form-field>
+    <mat-form-field class="example-form-field" [style.width.px]=80>
+      <mat-label>Side</mat-label>
+      <input matInput placeholder="Page" [value]="binderSide" readonly />
+    </mat-form-field>
+    <mat-form-field class="example-form-field" [style.width.px]=70>
+      <mat-label>NPN</mat-label>
       <input matInput type="text" [(ngModel)]="value" (change)="update()" pattern="\d*" inputmode="numeric">
     </mat-form-field>
   </div>
