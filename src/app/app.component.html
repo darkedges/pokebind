@@ -2,7 +2,7 @@
   <mat-grid-list cols="3" rowHeight="5rem">
     @for (tile of tiles; track tile) {
     <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows"
-      [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
+      [style.background]="tile.color">{{tile.text}}<br>{{tile.number}}</mat-grid-tile>
     }
   </mat-grid-list>
   <div class="overlay">
