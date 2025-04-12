@@ -1,7 +1,4 @@
 <div class="pokedex">
-  <mat-toolbar>
-    <span>PokeBind</span>
-  </mat-toolbar>
   <mat-grid-list cols="3" rowHeight="5rem">
     @for (tile of tiles; track tile) {
     <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows" [style.background-color]="tile.color"
