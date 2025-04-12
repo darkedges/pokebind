@@ -9,7 +9,7 @@ export interface Tile {
   color: string;
   cols: number;
   rows: number;
-  text: string;
+  text: number;
 }
 
 @Component({
@@ -21,22 +21,31 @@ export interface Tile {
 })
 export class AppComponent {
   tiles: Tile[] = [
-    { text: '1', cols: 1, rows: 3, color: 'lightgreen' },
-    { text: '2', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '3', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '4', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '5', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '6', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '7', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '8', cols: 1, rows: 3, color: 'lightblue' },
-    { text: '9', cols: 1, rows: 3, color: 'lightblue' },
+    { text: 1, cols: 1, rows: 3, color: 'lightgreen' },
+    { text: 2, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 3, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 4, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 5, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 6, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 7, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 8, cols: 1, rows: 3, color: 'lightblue' },
+    { text: 9, cols: 1, rows: 3, color: 'lightblue' },
   ];
-  value = 1;
-  oldValue = 0;
+  value: number = 1;
+  oldValue: number = 0;
   update() {
     this.tiles[this.oldValue].color = 'lightblue'
     this.oldValue = (this.value - 1) % 9
-    this.tiles[this.oldValue].color = 'lightgreen'
+    var t = this.tiles[this.oldValue]
+    t.color = 'lightgreen'
+    t.text = this.value
+    for (let i = 0; i < this.oldValue; i++) {
+      this.tiles[i].text = this.value - (this.oldValue - i)
+    }
+    for (let i = this.oldValue + 1; i < 9; i++) {
+      let p: number = (+this.value) + (i - this.oldValue);
+      this.tiles[i].text = p
+    }
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
