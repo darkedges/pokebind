@@ -8,7 +8,7 @@
   <div class="overlay">
     <mat-form-field class="example-form-field">
       <mat-label>pokedex number</mat-label>
-      <input matInput type="text" [(ngModel)]="value" (change)="update()">
+      <input matInput type="text" [(ngModel)]="value" (change)="update()" pattern="\d*" inputmode="numeric">
     </mat-form-field>
   </div>
 </div>
