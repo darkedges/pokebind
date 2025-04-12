@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
 export interface Tile {
   color: string;
   cols: number;
@@ -17,7 +20,7 @@ export interface Tile {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatGridListModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule],
+  imports: [JsonPipe, MatPaginatorModule, MatToolbarModule, MatGridListModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -52,10 +55,10 @@ export class AppComponent {
     "Raichu",
     "Sandshrew",
     "Sandslash",
-    "Nidoranâ™€",
+    "Nidoran",
     "Nidorina",
     "Nidoqueen",
-    "Nidoranâ™‚",
+    "Nidoran",
     "Nidorino",
     "Nidoking",
     "Clefairy",
@@ -1062,9 +1065,22 @@ export class AppComponent {
     { text: this.pokemon[8], number: 8, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/008.png" },
     { text: this.pokemon[9], number: 9, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/009.png" },
   ];
-
+  length = 1025;
+  pageSize = 9;
+  pageIndex = 0;
   value: number = 1;
   oldValue: number = 0;
+  pageEvent: PageEvent | undefined;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.value = (this.pageIndex + 1) * 9
+    this.update()
+  }
+
   update() {
     this.tiles[this.oldValue].color = 'lightblue'
     this.oldValue = (this.value - 1) % 9
@@ -1073,7 +1089,6 @@ export class AppComponent {
     t.text = this.pokemon[this.value]
     t.number = this.value
     t.image = calcImageURL(t.number)
-    console.log(t)
     for (let i = 0; i < this.oldValue; i++) {
       let p = (this.value - (this.oldValue - i));
       this.tiles[i].text = this.pokemon[p]

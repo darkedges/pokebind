@@ -1,4 +1,7 @@
 <div class="pokedex">
+  <mat-toolbar>
+    <span>PokeBind</span>
+  </mat-toolbar>
   <mat-grid-list cols="3" rowHeight="5rem">
     @for (tile of tiles; track tile) {
     <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows" [style.background-color]="tile.color"
@@ -7,10 +10,14 @@
     </mat-grid-tile>
     }
   </mat-grid-list>
+  <mat-paginator #paginator class="demo-paginator" [showFirstLastButtons]="true" [pageSize]="pageSize" [length]="length"
+    [hidePageSize]="true" (page)="handlePageEvent($event)" aria-label="Select page">
+  </mat-paginator>
   <div class="overlay">
     <mat-form-field class="example-form-field">
       <mat-label>national pokedex number</mat-label>
       <input matInput type="text" [(ngModel)]="value" (change)="update()" pattern="\d*" inputmode="numeric">
     </mat-form-field>
   </div>
+
 </div>
