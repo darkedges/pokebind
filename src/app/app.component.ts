@@ -11,6 +11,7 @@ export interface Tile {
   rows: number;
   text: string;
   number: number;
+  image: string;
 }
 
 @Component({
@@ -1051,15 +1052,15 @@ export class AppComponent {
   ]
 
   tiles: Tile[] = [
-    { text: this.pokemon[1], number: 1, cols: 1, rows: 3, color: 'lightgreen' },
-    { text: this.pokemon[2], number: 2, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[3], number: 3, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[4], number: 4, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[5], number: 5, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[6], number: 6, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[7], number: 7, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[8], number: 8, cols: 1, rows: 3, color: 'lightblue' },
-    { text: this.pokemon[9], number: 9, cols: 1, rows: 3, color: 'lightblue' },
+    { text: this.pokemon[1], number: 1, cols: 1, rows: 3, color: 'lightgreen', image: "https://www.serebii.net/pokemon/art/001.png" },
+    { text: this.pokemon[2], number: 2, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/002.png" },
+    { text: this.pokemon[3], number: 3, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/003.png" },
+    { text: this.pokemon[4], number: 4, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/004.png" },
+    { text: this.pokemon[5], number: 5, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/005.png" },
+    { text: this.pokemon[6], number: 6, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/006.png" },
+    { text: this.pokemon[7], number: 7, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/007.png" },
+    { text: this.pokemon[8], number: 8, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/008.png" },
+    { text: this.pokemon[9], number: 9, cols: 1, rows: 3, color: 'lightblue', image: "https://www.serebii.net/pokemon/art/009.png" },
   ];
 
   value: number = 1;
@@ -1071,18 +1072,27 @@ export class AppComponent {
     t.color = 'lightgreen'
     t.text = this.pokemon[this.value]
     t.number = this.value
+    t.image = calcImageURL(t.number)
+    console.log(t)
     for (let i = 0; i < this.oldValue; i++) {
       let p = (this.value - (this.oldValue - i));
       this.tiles[i].text = this.pokemon[p]
       this.tiles[i].number = p
+      this.tiles[i].image = calcImageURL(p)
     }
     for (let i = this.oldValue + 1; i < 9; i++) {
       let p: number = (+this.value) + (i - this.oldValue);
       this.tiles[i].text = this.pokemon[p]
       this.tiles[i].number = p
+      this.tiles[i].image = calcImageURL(p)
     }
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
   }
 }
+function calcImageURL(p: number): string {
+  var s = "000000000" + p;
+  return "https://www.serebii.net/pokemon/art/" + s.substring(s.length - 3) + ".png"
+}
+
