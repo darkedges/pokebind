@@ -11,7 +11,7 @@
     }
   </mat-grid-list>
   <mat-paginator #paginator class="demo-paginator" [showFirstLastButtons]="true" [pageSize]="pageSize" [length]="length"
-    [hidePageSize]="true" (page)="handlePageEvent($event)" aria-label="Select page">
+    [hidePageSize]="true" [pageIndex]="pageIndex" (page)="handlePageEvent($event)" aria-label="Select page">
   </mat-paginator>
   <div class="overlay">
     <mat-form-field class="example-form-field">

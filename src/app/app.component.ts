@@ -1104,6 +1104,7 @@ export class AppComponent {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
+    this.pageIndex = Math.min(this.value / 9) - 1
   }
 }
 function calcImageURL(p: number): string {
