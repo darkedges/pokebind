@@ -8,7 +8,7 @@
 ::ng-deep {
     .mat-grid-tile-content {
         align-items: start !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
     }
 }
 
@@ -16,6 +16,7 @@
     font-size: large;
     font-weight: 700;
     color: black;
+    text-align: center;
 }
 
 
